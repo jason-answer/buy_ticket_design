@@ -49,7 +49,25 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '5.8-21',
             assetName: 'rodion-kutsaev.jpeg',
-            offset: pageOffset - 1,
+            offset: pageOffset - 2,
+          ),
+          SlidingCard(
+            name: 'Shenzhen GLOBAL DESIGN AWARD 2018',
+            date: '4.20-30',
+            assetName: 'steve-johnson.jpeg',
+            offset: pageOffset - 3,
+          ),
+          SlidingCard(
+            name: 'Dawan District, Guangdong Hong Kong and Macao',
+            date: '4.28-31',
+            assetName: 'rodion-kutsaev.jpeg',
+            offset: pageOffset - 4,
+          ),
+          SlidingCard(
+            name: 'Dawan District, Guangdong Hong Kong and Macao',
+            date: '5.8-21',
+            assetName: 'rodion-kutsaev.jpeg',
+            offset: pageOffset - 5,
           ),
         ],
       ),
@@ -127,12 +145,12 @@ class CardContent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Transform.translate(
-            offset: Offset(8 * offset, 0),
+            offset: Offset(0, 0),
             child: Text(name, style: TextStyle(fontSize: 16)),
           ),
           SizedBox(height: 8),
           Transform.translate(
-            offset: Offset(32 * offset, 0),
+            offset: Offset(0, 0),
             child: Text(
               date,
               style: TextStyle(color: Colors.grey),
@@ -142,7 +160,7 @@ class CardContent extends StatelessWidget {
           Row(
             children: <Widget>[
               Transform.translate(
-                offset: Offset(48 * offset, 0),
+                offset: Offset(0, 0),
                 child: RaisedButton(
                   color: Color(0xFF162A49),
                   child: Text('Reserve'),
