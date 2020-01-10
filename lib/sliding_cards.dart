@@ -36,36 +36,42 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
           SlidingCard(
             name: 'Shenzhen GLOBAL DESIGN AWARD 2018',
             date: '4.20-30',
+            price: 29.0,
             assetName: 'steve-johnson.jpeg',
             offset: pageOffset,
           ),
           SlidingCard(
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '4.28-31',
+            price: 99.0,
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 1,
           ),
           SlidingCard(
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '5.8-21',
+            price: 159.0,
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 2,
           ),
           SlidingCard(
             name: 'Shenzhen GLOBAL DESIGN AWARD 2018',
             date: '4.20-30',
+            price: 129.0,
             assetName: 'steve-johnson.jpeg',
             offset: pageOffset - 3,
           ),
           SlidingCard(
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '4.28-31',
+            price: 79.0,
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 4,
           ),
           SlidingCard(
             name: 'Dawan District, Guangdong Hong Kong and Macao',
             date: '5.8-21',
+            price: 199.0,
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 5,
           ),
@@ -78,6 +84,7 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
 class SlidingCard extends StatelessWidget {
   final String name;
   final String date;
+  final double price;
   final String assetName;
   final double offset;
 
@@ -85,6 +92,7 @@ class SlidingCard extends StatelessWidget {
     Key key,
     @required this.name,
     @required this.date,
+    @required this.price,
     @required this.assetName,
     @required this.offset,
   }) : super(key: key);
@@ -115,6 +123,7 @@ class SlidingCard extends StatelessWidget {
               child: CardContent(
                 name: name,
                 date: date,
+                price: price,
                 offset: gauss,
               ),
             ),
@@ -130,10 +139,13 @@ class CardContent extends StatelessWidget {
   final String date;
   final double offset;
 
+  final double price;
+
   const CardContent(
       {Key key,
       @required this.name,
       @required this.date,
+      @required this.price,
       @required this.offset})
       : super(key: key);
 
@@ -175,7 +187,7 @@ class CardContent extends StatelessWidget {
               Transform.translate(
                 offset: Offset(32 * offset, 0),
                 child: Text(
-                  '0.00 \$',
+                  price.toString()+' \$',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
