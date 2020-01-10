@@ -45,6 +45,12 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 1,
           ),
+          SlidingCard(
+            name: 'Dawan District, Guangdong Hong Kong and Macao',
+            date: '5.8-21',
+            assetName: 'rodion-kutsaev.jpeg',
+            offset: pageOffset - 1,
+          ),
         ],
       ),
     );
@@ -68,6 +74,7 @@ class SlidingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double gauss = math.exp(-(math.pow((offset.abs() - 0.5), 2) / 0.08));
+    print(gauss);
     return Transform.translate(
       offset: Offset(-32 * gauss * offset.sign, 0),
       child: Card(
@@ -121,7 +128,7 @@ class CardContent extends StatelessWidget {
         children: <Widget>[
           Transform.translate(
             offset: Offset(8 * offset, 0),
-            child: Text(name, style: TextStyle(fontSize: 20)),
+            child: Text(name, style: TextStyle(fontSize: 16)),
           ),
           SizedBox(height: 8),
           Transform.translate(
@@ -138,10 +145,7 @@ class CardContent extends StatelessWidget {
                 offset: Offset(48 * offset, 0),
                 child: RaisedButton(
                   color: Color(0xFF162A49),
-                  child: Transform.translate(
-                    offset: Offset(24 * offset, 0),
-                    child: Text('Reserve'),
-                  ),
+                  child: Text('Reserve'),
                   textColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32),

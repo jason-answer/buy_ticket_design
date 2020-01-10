@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const double minHeight = 120;
@@ -25,13 +26,14 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
   double get headerTopMargin =>
       lerp(20, 20 + MediaQuery.of(context).padding.top);
 
+  double get topBorderRadius => lerp(32, 0);
   double get headerFontSize => lerp(14, 24);
 
   double get itemBorderRadius => lerp(8, 24);
 
   double get iconLeftBorderRadius => itemBorderRadius;
 
-  double get iconRightBorderRadius => lerp(8, 0);
+  double get iconRightBorderRadius => lerp(8, 24);
 
   double get iconSize => lerp(iconStartSize, iconEndSize);
 
@@ -77,10 +79,11 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
             onVerticalDragEnd: _handleDragEnd,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              decoration: const BoxDecoration(
-                color: Color(0xFF162A49),
-                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-              ),
+              decoration: BoxDecoration(
+                  color: Color(0xFF162A49),
+                  borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(topBorderRadius),
+                      bottom: Radius.circular(0))),
               child: Stack(
                 children: <Widget>[
                   MenuButton(),
@@ -108,9 +111,10 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
       left: iconLeftMargin(index),
       child: ClipRRect(
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(iconLeftBorderRadius),
-          right: Radius.circular(iconRightBorderRadius),
-        ),
+            left: Radius.circular(iconLeftBorderRadius),
+            right: _controller.status == AnimationStatus.completed
+                ? Radius.circular(0)
+                : Radius.circular(iconRightBorderRadius)),
         child: Image.asset(
           'assets/${event.assetName}',
           fit: BoxFit.cover,
@@ -192,7 +196,9 @@ class ExpandedEventItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
             color: Colors.white,
           ),
-          padding: EdgeInsets.only(left: height).add(EdgeInsets.all(8)),
+          padding:
+              EdgeInsets.only(left: height + 4, top: 6, right: 4, bottom: 8)
+                  .add(EdgeInsets.all(4)),
           child: _buildContent(),
         ),
       ),
@@ -202,7 +208,7 @@ class ExpandedEventItem extends StatelessWidget {
   Widget _buildContent() {
     return Column(
       children: <Widget>[
-        Text(title, style: TextStyle(fontSize: 16)),
+        Text(title, style: TextStyle(fontSize: 14)),
         SizedBox(height: 8),
         Row(
           children: <Widget>[
@@ -219,7 +225,7 @@ class ExpandedEventItem extends StatelessWidget {
               date,
               style: TextStyle(
                 fontWeight: FontWeight.w300,
-                fontSize: 12,
+                fontSize: 10,
                 color: Colors.grey,
               ),
             ),
@@ -264,6 +270,7 @@ class SheetHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(fontSize);
     return Positioned(
       top: topMargin,
       child: Text(
